@@ -9,6 +9,8 @@ mongoose.connect("mongodb://localhost/notedb");
 mongoose.Promise = global.Promise;
 
 app.use(bodyParser.json());
-app.use(routes);
+app.use(bodyParser.urlencoded({extended: true}));
+app.use("/api", routes);
+app.get("/", (req, res) => res.send("Welcome to Talk to Notepad app"))
 
 app.listen(port, () => console.log("talk-to-notepad app started on: " + port));
