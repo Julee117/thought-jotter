@@ -12,3 +12,12 @@ exports.new = function(req, res, next) {
     res.send(note);
   })
 };
+
+exports.note_detail = function(req, res, next) {
+  Note.findById(req.params.id, function(err, note) {
+    if (err) {
+      return next(err);
+    }
+    res.send(note);
+  })
+};
