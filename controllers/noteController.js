@@ -38,3 +38,12 @@ exports.note_update = function(req, res, next) {
     }
   })
 };
+
+exports.note_delete = function(req, res, next) {
+  Note.findByIdAndRemove(req.params.id, function(err) {
+    if (err) {
+      return next(err);
+    }
+    res.send("Note deleted");
+  })
+}
