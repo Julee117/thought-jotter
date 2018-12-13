@@ -2,17 +2,24 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import NotesPage from './NotesPage';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
+import notesReducer from './reducers/NotesReducer';
 import * as serviceWorker from './serviceWorker';
 
+const store = createStore(
+  notesReducer,
+  compose(
+    applyMiddleware(thunk),
+    window.devToolsExtension ? window.devToolsExtension() : f => f
+  )
+)
+
 ReactDOM.render(
-  <Router>
-    <Switch>
-      <Route path="/" exact component={App} />
-      <Route path="/notes" component={NotesPage} />
-    </Switch>
-  </Router>,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
