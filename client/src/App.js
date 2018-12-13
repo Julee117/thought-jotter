@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import './App.css';
+import HomePage from './HomePage';
+import NotesPage from './NotesPage';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 class App extends Component {
 
-  handleOnClick = () => {
-    this.props.history.push('/notes')
-  }
-
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          Welcome to Thought Jotter
-          <button onClick={this.handleOnClick}>Click to start</button>
-        </header>
+      <div>
+        <Router>
+          <Switch>
+            <Route exact path="/" component={HomePage} />
+            <Route path="/notes" component={NotesPage} />
+          </Switch>
+        </Router>
       </div>
     );
   }
