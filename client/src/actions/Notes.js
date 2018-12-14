@@ -9,7 +9,7 @@ const setNotes = notes => {
 
 export const getNotes = () => {
   return dispatch => {
-    return fetch(`${API_URL}/notes`)
+    return fetch(`${API_URL}notes`)
       .then(response => response.json())
       .then(notes => dispatch(setNotes(notes)))
       .catch(error => console.log(error));
