@@ -5,7 +5,7 @@ const routes = require("./routes/api");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://localhost/notedb");
+mongoose.connect("mongodb://localhost/notedb", { useNewUrlParser: true });
 mongoose.Promise = global.Promise;
 
 // Add headers
