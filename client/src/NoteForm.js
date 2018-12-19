@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { createNote } from './actions/Notes';
+import { bindActionCreators } from 'redux';
 
 class NoteForm extends Component {
+
   constructor(props) {
     super(props);
 
@@ -17,11 +21,20 @@ class NoteForm extends Component {
     })
   }
 
+  handleOnSubmit = event => {
+    event.preventDefault();
+    this.props.createNote(this.state);
+    this.setState({
+      title: "",
+      content: ""
+    })
+  }
+
   render() {
     return (
       <div>
         <h1>Create new note</h1>
-        <form>
+        <form onSubmit={this.handleOnSubmit}>
           <div>
             <label htmlFor="title">Title:</label>
             <input
@@ -40,11 +53,17 @@ class NoteForm extends Component {
               value={this.state.content}
             />
           </div>
-          <button type="submit">Submit</button>
+          <input type="submit" value="Submit" />
         </form>
       </div>
     )
   }
 }
 
-export default NoteForm;
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    createNote
+  }, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(NoteForm);
