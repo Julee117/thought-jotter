@@ -4,14 +4,18 @@ const Schema = mongoose.Schema;
 const NoteSchema = new Schema({
   title: {
     type: String,
-    required: [true, "Title is required"]
+    required: true
   },
   content: {
     type: String,
-    required: [true, "Content is required"]
+    required: true
+  },
+  date: {
+    type: Date,
+    default: Date.now
   }
-})
+});
 
 const Note = mongoose.model("note", NoteSchema);
 
-module.exports = Note; 
+module.exports = Note;
