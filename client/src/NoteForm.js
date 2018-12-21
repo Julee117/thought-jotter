@@ -24,6 +24,7 @@ class NoteForm extends Component {
   handleOnSubmit = event => {
     event.preventDefault();
     this.props.createNote(this.state);
+    this.props.history.push('/notes')
     this.setState({
       title: "",
       content: ""
