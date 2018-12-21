@@ -14,6 +14,13 @@ const addNote = note => {
   }
 }
 
+const removeNote = note => {
+  return {
+    type: 'DELETE_NOTE',
+    note
+  }
+}
+
 export const getNotes = () => {
   return dispatch => {
     return fetch(`${API_URL}notes`)
@@ -35,5 +42,15 @@ export const createNote = note => {
       .then(response => response.json())
       .then(note => dispatch(addNote(note)))
       .catch(error => console.log(error))
+  }
+}
+
+export const deleteNote = note => {
+  return dispatch => {
+    return fetch(`${API_URL}notes/${note._id}`, {
+      method: "DELETE"
+  })
+    .then(() => dispatch(removeNote(note)))
+    .catch(error => console.log(error))
   }
 }
