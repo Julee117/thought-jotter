@@ -6,7 +6,6 @@ const userRoutes = require('./routes/users');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const passport = require('passport');
 require('dotenv').config()
 const DB_USER = process.env.DB_USER;
 const DB_PW = process.env.DB_PW;
