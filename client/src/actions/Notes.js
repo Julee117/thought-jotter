@@ -22,8 +22,14 @@ const removeNote = note => {
 }
 
 export const getNotes = () => {
+  const token = localStorage.getItem('token') || null;
+
   return dispatch => {
-    return fetch(`${API_URL}notes`)
+    return fetch(`${API_URL}notes`, {
+      headers: {
+        "Content-Type": "application/json",
+        "authorization": token}
+    })
       .then(response => response.json())
       .then(notes => dispatch(setNotes(notes)))
       .catch(error => console.log(error));
@@ -31,13 +37,18 @@ export const getNotes = () => {
 }
 
 export const createNote = note => {
+  const token = localStorage.getItem('token') || null;
+
   return dispatch => {
     return fetch(`${API_URL}notes`, {
       method: "POST",
-      headers: {"Content-Type": "application/json"},
+      headers: {
+        "Content-Type": "application/json",
+        "authorization": token},
       body: JSON.stringify({
         title: note.title,
-        content: note.content}),
+        content: note.content,
+        })
     })
       .then(response => response.json())
       .then(note => dispatch(addNote(note)))
@@ -46,11 +57,16 @@ export const createNote = note => {
 }
 
 export const deleteNote = note => {
+  const token = localStorage.getItem('token') || null;
+
   return dispatch => {
     return fetch(`${API_URL}notes/${note._id}`, {
-      method: "DELETE"
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "authorization": token}
   })
-    .then(() => dispatch(removeNote(note)))
+    .then((response) => dispatch(removeNote(note)))
     .catch(error => console.log(error))
   }
 }
