@@ -1,36 +1,26 @@
-const express = require("express");
+const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
-const routes = require("./routes/api");
-const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
+const noteRoutes = require('./routes/notes');
+const userRoutes = require('./routes/users');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const passport = require('passport');
+require('dotenv').config()
+const DB_USER = process.env.DB_USER;
+const DB_PW = process.env.DB_PW;
 
-mongoose.connect("mongodb://localhost/notedb", { useNewUrlParser: true });
-mongoose.Promise = global.Promise;
+mongoose.connect(`mongodb://${DB_USER}:${DB_PW}@ds263837.mlab.com:63837/app-db`, { useNewUrlParser: true })
+  .then(() => console.log(`MongoDB connected..`))
+mongoose.set('useCreateIndex', true);
 
-// Add headers
-app.use(function (req, res, next) {
-    // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', '*');
-
-    // Request methods you wish to allow
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-
-    // Request headers you wish to allow
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-
-    // Set to true if you need the website to include cookies in the requests sent
-    // to the API (e.g. in case you use sessions)
-    res.setHeader('Access-Control-Allow-Credentials', true);
-
-    // Pass to next layer of middleware
-    next();
-});
-
+app.use(cors());
 app.use(express.static("public"));
-
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
-app.use("/api", routes);
+app.use(bodyParser.urlencoded({extended: false}));
 
-app.listen(port, () => console.log("talk-to-notepad app started on: " + port));
+app.use("/api", noteRoutes);
+app.use("/auth", userRoutes);
+
+app.listen(port, () => console.log("App started on: " + port));
