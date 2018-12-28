@@ -2,14 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers/index';
+import HomePage from './containers/HomePage';
+import NotesPage from './containers/NotesPage';
+import Login from './containers/Login';
+import RequireAuth from './containers/requireAuth';
 import * as serviceWorker from './serviceWorker';
 
 const store = createStore(
   rootReducer,
+  {users: {authenticated: localStorage.getItem('token')}},
   compose(
     applyMiddleware(thunk),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
@@ -18,7 +24,13 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <Router>
+      <App>
+        <Route exact path="/" component={HomePage} />
+        <Route path="/login" component={Login} />
+        <Route path="/notes" component={RequireAuth(NotesPage)} />
+      </App>
+    </Router>
   </Provider>,
   document.getElementById('root'));
 
