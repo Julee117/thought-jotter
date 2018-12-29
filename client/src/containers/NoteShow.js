@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { deleteNote } from '../actions/Notes';
+import { Container, Button } from 'reactstrap';
 
 class NoteShow extends Component {
   handleOnClick = () => {
@@ -11,13 +12,18 @@ class NoteShow extends Component {
 
   render() {
     const {note} = this.props;
+    const newLines = (note.content).split("\n").map((item, key) => {
+      return <span key={key}>{item}<br/></span>
+    })
 
     return(
-      <div>
-        <h3>{note.title}</h3>
-        <p>{note.content}</p>
-        <button onClick={this.handleOnClick}>Delete</button>
-      </div>
+      <Container>
+        <div className="note col-lg-6">
+          <h3 className="title">{note.title}</h3>
+          {newLines}
+          <Button onClick={this.handleOnClick} outline color="danger" size="sm" className="deleteButton">Delete</Button>
+        </div>
+      </Container>
     )
   }
 }
