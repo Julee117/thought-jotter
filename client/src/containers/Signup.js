@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { signup } from '../actions/Users';
 import { bindActionCreators } from 'redux';
+import { Container, Col, Form, FormGroup, Input, Button } from 'reactstrap';
 
 class Signup extends Component {
   constructor(props) {
@@ -30,43 +31,52 @@ class Signup extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Sign Up</h1>
-        <form onSubmit={this.handleOnSubmit}>
-          <div>
-            <label htmlFor="username">Username:</label>
-            <input
-              type="text"
-              placeholder="Username"
-              onChange={this.handleChange}
-              name="username"
-              value={this.state.username}
-            />
-          </div>
-          <div>
-            <label htmlFor="email">Email:</label>
-            <input
-              type="email"
-              placeholder="Email"
-              onChange={this.handleChange}
-              name="email"
-              value={this.state.email}
-            />
-          </div>
-          <div>
-            <label htmlFor="password">Password:</label>
-            <input
-              type="password"
-              placeholder="Password"
-              onChange={this.handleChange}
-              name="password"
-              value={this.state.password}
-            />
-          </div>
-          <div>{this.props.errorMessage}</div>
-          <input type="submit" value="Submit" />
-        </form>
-      </div>
+      <Container>
+        <div className="forms">
+          <h2 className="title">Sign Up</h2>
+          <Form onSubmit={this.handleOnSubmit} classname="form">
+            <Col>
+              <FormGroup>
+                <Input
+                  type="text"
+                  placeholder="Username"
+                  onChange={this.handleChange}
+                  name="username"
+                  value={this.state.username}
+                />
+              </FormGroup>
+            </Col>
+            <Col>
+              <FormGroup>
+                <Input
+                  type="email"
+                  placeholder="Email"
+                  onChange={this.handleChange}
+                  name="email"
+                  value={this.state.email}
+                />
+              </FormGroup>
+            </Col>
+            <Col>
+              <FormGroup>
+                <Input
+                  type="password"
+                  placeholder="Password"
+                  onChange={this.handleChange}
+                  name="password"
+                  value={this.state.password}
+                />
+              </FormGroup>
+            </Col>
+            <div className="error">{this.props.errorMessage}</div>
+            <Col>
+              <FormGroup>
+                <Button color="primary" type="submit" className="btn-block">Submit</Button>
+              </FormGroup>
+            </Col>
+          </Form>
+        </div>
+      </Container>
     )
   }
 }
