@@ -1,8 +1,8 @@
 import React from 'react';
 
-const NoteCard = ({note}) => 
+const NoteCard = ({note}) =>
   <div>
-    <h2>{note.title}</h2>
+    <h4>{note.title}</h4>
     <p>{note.date.split("T")[0]}</p>
   </div>
 
