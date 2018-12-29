@@ -5,13 +5,13 @@ class HomePage extends Component {
 
   render() {
     return (
-      <div className="Home">
-        <header className="Home-header">
+      <div>
+        <h1 className="homeTitle">
           Welcome to Thought Jotter
-          <div>
-            <Signup history={this.props.history}/>
-          </div>
-        </header>
+        </h1>
+        <div>
+          <Signup history={this.props.history}/>
+        </div>
       </div>
     )
   }
