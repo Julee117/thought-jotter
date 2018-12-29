@@ -11,6 +11,7 @@ import HomePage from './containers/HomePage';
 import NotesPage from './containers/NotesPage';
 import Login from './containers/Login';
 import RequireAuth from './containers/requireAuth';
+import 'bootstrap/dist/css/bootstrap.css';
 import * as serviceWorker from './serviceWorker';
 
 const store = createStore(
