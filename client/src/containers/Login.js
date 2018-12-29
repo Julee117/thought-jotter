@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { login } from '../actions/Users';
 import { bindActionCreators } from 'redux';
+import { Container, Col, Form, FormGroup, Input, Button } from 'reactstrap';
 
 class Login extends Component {
   constructor(props) {
@@ -29,33 +30,41 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Log in</h1>
-        <form onSubmit={this.handleOnSubmit}>
-          <div>
-            <label htmlFor="username">Username:</label>
-            <input
-              type="text"
-              placeholder="Username"
-              onChange={this.handleChange}
-              name="username"
-              value={this.state.username}
-            />
-          </div>
-          <div>
-            <label htmlFor="password">Password:</label>
-            <input
-              type="password"
-              placeholder="Password"
-              onChange={this.handleChange}
-              name="password"
-              value={this.state.password}
-            />
-          </div>
-          <div>{this.props.errorMessage}</div>
-          <input type="submit" value="Submit" />
-        </form>
-      </div>
+      <Container className="login">
+        <div className="forms">
+          <h2 className="title">Log in</h2>
+          <Form onSubmit={this.handleOnSubmit}>
+            <Col>
+              <FormGroup>
+                <Input
+                  type="text"
+                  placeholder="Username"
+                  onChange={this.handleChange}
+                  name="username"
+                  value={this.state.username}
+                />
+              </FormGroup>
+            </Col>
+            <Col>
+              <FormGroup>
+                <Input
+                  type="password"
+                  placeholder="Password"
+                  onChange={this.handleChange}
+                  name="password"
+                  value={this.state.password}
+                />
+            </FormGroup>
+            </Col>
+            <div className="error">{this.props.errorMessage}</div>
+            <Col>
+              <FormGroup>
+                <Button color="primary" type="submit" className="btn-block">Submit</Button>
+              </FormGroup>
+            </Col>
+          </Form>
+        </div>
+      </Container>
     )
   }
 }
