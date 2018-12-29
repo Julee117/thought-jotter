@@ -59,7 +59,7 @@ export const login = (user, callback) => {
       })
       .catch(error => {
         console.log(error)
-        dispatch(authError("Incorrect password"))
+        dispatch(authError("Invalid log in"))
       })
   }
 }
