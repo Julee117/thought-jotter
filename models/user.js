@@ -10,6 +10,11 @@ const UserSchema = new Schema({
     lowercase: true,
     unique: true
   },
+  phonenumber: {
+    type: String,
+    required: true,
+    unique: true
+  },
   email: {
     type: String,
     required: true,
