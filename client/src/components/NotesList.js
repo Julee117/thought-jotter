@@ -5,9 +5,9 @@ import { Container, Row, Col } from 'reactstrap';
 
 const NotesList = ({notes}) => {
   const noteCards = notes.map(note =>
-    <Col md="4">
+    <Col key={note._id} md="4">
       <Col md="12" className="noteCard">
-        <Link key={note._id} to={`/notes/${note._id}`} style={{textDecoration: 'none'}}>
+        <Link  to={`/notes/${note._id}`} style={{textDecoration: 'none'}}>
           <NoteCard note={note} />
         </Link>
       </Col>
