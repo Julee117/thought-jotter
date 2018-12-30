@@ -21,6 +21,7 @@ export const signup = (user, callback) => {
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({
         username: user.username,
+        phonenumber: user.phonenumber,
         email: user.email,
         password: user.password}),
     })

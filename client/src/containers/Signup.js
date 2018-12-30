@@ -10,6 +10,7 @@ class Signup extends Component {
 
     this.state = {
       username: "",
+      phonenumber: "",
       email: "",
       password: ""
     }
@@ -34,7 +35,7 @@ class Signup extends Component {
       <Container>
         <div className="forms">
           <h2 className="title">Sign Up</h2>
-          <Form onSubmit={this.handleOnSubmit} classname="form">
+          <Form onSubmit={this.handleOnSubmit}>
             <Col>
               <FormGroup>
                 <Input
@@ -43,6 +44,17 @@ class Signup extends Component {
                   onChange={this.handleChange}
                   name="username"
                   value={this.state.username}
+                />
+              </FormGroup>
+            </Col>
+            <Col>
+              <FormGroup>
+                <Input
+                  type="text"
+                  placeholder="Country Code + Phone Number (14157012311)"
+                  onChange={this.handleChange}
+                  name="phonenumber"
+                  value={this.state.phonenumber}
                 />
               </FormGroup>
             </Col>
