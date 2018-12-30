@@ -8,10 +8,11 @@ function userToken(user) {
 
 exports.signup = function(req, res, next) {
   const username = req.body.username;
+  const phonenumber = req.body.phonenumber;
   const email = req.body.email;
   const password = req.body.password
 
-  if (!username || !email || !password) {
+  if (!username || !phonenumber || !email || !password) {
     return res.send({error: "Please fill in all the fields"});
   }
 
@@ -25,6 +26,7 @@ exports.signup = function(req, res, next) {
 
     const newUser = new User({
       username: username,
+      phonenumber: `+${phonenumber}`,
       email: email,
       password: password
     })
