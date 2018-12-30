@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createNote } from '../actions/Notes';
 import { bindActionCreators } from 'redux';
-import { Container, Col, Form, FormGroup, Formcontrol, Label, Input, Button } from 'reactstrap';
+import { Container, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
 class NoteForm extends Component {
 
@@ -65,6 +65,9 @@ class NoteForm extends Component {
               </FormGroup>
             </Col>
           </Form>
+        </div>
+        <div className="textOption">
+          You can also submit your thoughts via text by texting the word "JOT" to 1-929-203-5447
         </div>
       </Container>
     )
