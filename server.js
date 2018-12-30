@@ -3,10 +3,11 @@ const app = express();
 const port = process.env.PORT || 3000;
 const noteRoutes = require('./routes/notes');
 const userRoutes = require('./routes/users');
+const twilioRoute = require('./routes/twilio');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
-require('dotenv').config()
+require('dotenv').config();
 const DB_USER = process.env.DB_USER;
 const DB_PW = process.env.DB_PW;
 
@@ -21,5 +22,6 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 app.use("/api", noteRoutes);
 app.use("/auth", userRoutes);
+app.use("/", twilioRoute);
 
 app.listen(port, () => console.log("App started on: " + port));
