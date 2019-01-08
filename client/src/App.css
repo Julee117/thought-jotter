@@ -59,9 +59,16 @@
   border-radius: 5px;
 }
 
+.editButton {
+  margin-right: 5px;
+}
+
 .deleteButton {
-  margin-top: 5%;
-  margin-left: 45%;
+  margin-left: 5px;
+}
+
+.buttons {
+  margin-top: 30px;
 }
 
 .noteCard {
