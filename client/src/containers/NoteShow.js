@@ -33,8 +33,10 @@ class NoteShow extends Component {
         <div className="note col-lg-6">
           <h3 className="title">{note.title}</h3>
           {newLines()}
-          <Button onClick={this.handleEditClick} outline color="success" size="sm">Edit</Button>
-          <Button onClick={this.handleOnClick} outline color="danger" size="sm" className="deleteButton">Delete</Button>
+          <div className="buttons text-center">
+            <Button onClick={this.handleEditClick} outline color="success" size="sm" className="editButton">Edit</Button>
+            <Button onClick={this.handleOnClick} outline color="danger" size="sm" className="deleteButton">Delete</Button>
+          </div>
         </div>
       </Container>
     )
