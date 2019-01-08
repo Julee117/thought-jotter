@@ -14,6 +14,13 @@ const addNote = note => {
   }
 }
 
+const editNote = note => {
+  return {
+    type: 'UPDATE_NOTE',
+    note
+  }
+}
+
 const removeNote = note => {
   return {
     type: 'DELETE_NOTE',
@@ -53,6 +60,26 @@ export const createNote = note => {
       .then(response => response.json())
       .then(note => dispatch(addNote(note)))
       .catch(error => console.log(error))
+  }
+}
+
+export const updateNote = note => {
+  const token = localStorage.getItem('token') || null;
+
+  return dispatch => {
+    return fetch(`${API_URL}notes/${note._id}/update`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "authorization": token},
+      body: JSON.stringify({
+        title: note.title,
+        content: note.content,
+      })
+    })
+      .then(response => response.json())
+      .then(note => dispatch(editNote(note)))
+      .catch(error => console.log(error));
   }
 }
 
