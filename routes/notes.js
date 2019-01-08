@@ -9,6 +9,7 @@ const requireAuth = passport.authenticate('jwt', {session: false});
 router.get("/notes", requireAuth, noteController.all_notes);
 router.post("/notes", requireAuth, noteController.new);
 router.get("/notes/:id", requireAuth, noteController.note_detail);
+router.put("/notes/:id/update", requireAuth, noteController.note_update);
 router.delete("/notes/:id", requireAuth, noteController.note_delete);
 
 module.exports = router;
